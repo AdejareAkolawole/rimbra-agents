@@ -3,6 +3,6 @@
   "version": "1.1.0",
   "description": "Deploy, read logs, roll back, set environment variables and query databases on Rimbra from Claude.",
   "author": { "name": "Rimbra", "url": "https://rimbra.app" },
-  "homepage": "https://app.rimbra.app/docs/ai-agents",
+  "homepage": "https://app.rimbra.app/docs/mcp",
   "keywords": ["rimbra", "deploy", "hosting", "mcp"]
 }

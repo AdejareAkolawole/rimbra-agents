@@ -8,7 +8,7 @@
       "source": "./plugins/rimbra",
       "description": "Connects Claude to your Rimbra workspace and teaches it how Rimbra works.",
       "category": "deployment",
-      "homepage": "https://app.rimbra.app/docs/ai-agents"
+      "homepage": "https://app.rimbra.app/docs/mcp"
     }
   ]
 }
