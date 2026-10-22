@@ -1,0 +1,14 @@
+{
+  "name": "rimbra",
+  "owner": { "name": "Rimbra", "url": "https://rimbra.app" },
+  "metadata": { "description": "Rimbra for Claude Code: deploy, read logs, roll back and manage databases from Claude." },
+  "plugins": [
+    {
+      "name": "rimbra",
+      "source": "./plugins/rimbra",
+      "description": "Connects Claude to your Rimbra workspace and teaches it how Rimbra works.",
+      "category": "deployment",
+      "homepage": "https://app.rimbra.app/docs/ai-agents"
+    }
+  ]
+}

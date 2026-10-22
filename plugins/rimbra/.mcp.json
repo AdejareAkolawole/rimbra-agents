@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "rimbra": {
+      "type": "http",
+      "url": "https://api.rimbra.app/mcp"
+    }
+  }
+}
