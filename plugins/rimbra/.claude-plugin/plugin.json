@@ -14,5 +14,6 @@
     "mcp"
   ],
   "icon": ".claude-plugin/icon.png",
-  "privacyPolicyUrl": "https://app.rimbra.app/privacy"
+  "privacyPolicyUrl": "https://app.rimbra.app/privacy",
+  "license": "MIT"
 }
