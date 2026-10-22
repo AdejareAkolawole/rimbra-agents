@@ -1,6 +1,6 @@
 ---
 name: rimbra
-description: Deploy and manage apps on Rimbra (rimbra.app) — projects, deployments, build and runtime logs, rollback, environment variables, databases and domains. Use when the user mentions Rimbra, a *.rimbra.app site, or wants to deploy, debug a failed deploy, roll back, or change variables or databases on Rimbra.
+description: Deploy and manage apps on Rimbra (rimbra.app) — projects, deployments, build and runtime logs, rollback, settings, environment variables, databases and backups, domains, email and WhatsApp. Use when the user mentions Rimbra, a *.rimbra.app site, or wants to deploy, debug a failed deploy, roll back, or change variables or databases on Rimbra.
 ---
 
 # Working with Rimbra
@@ -32,8 +32,18 @@ Rimbra hosts the user's apps. You reach it through the `rimbra` MCP server. If i
 4. The app builds but errors at runtime: `get_runtime_logs`.
 5. The live site broke after a deploy: offer `rollback_project` to the previous ready build (ids come from `get_project`), then fix forward.
 
+## Databases
+
+- `create_database`, then `connect_database` to the project (adds DATABASE_URL), then `deploy_project`.
+- `backup_database` before risky changes. `restore_backup` replaces the data (a safety backup is taken first); always confirm.
+
+## Email and WhatsApp
+
+- Email: `add_email_domain` with a from address, give the user the DNS records, wait until `list_email_domains` shows it verified, then `send_email`.
+- WhatsApp: numbers are connected in the dashboard; `send_whatsapp` sends from one.
+
 ## Care
 
-- Confirm with the user before `rollback_project`, `set_env_var` on Production, `create_project`, `create_database`, or any `query_database` statement that changes data.
+- Confirm with the user before `rollback_project`, `set_env_var` on Production, `create_project`, `create_database`, `restore_backup`, `send_email`, `send_whatsapp`, `contact_support`, or any `query_database` statement that changes data.
 - Never print secret values back to the user. Variable values aren't returned by the tools anyway.
 - Keep `query_database` reads small: add `LIMIT`.
