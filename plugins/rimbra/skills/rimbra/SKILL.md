@@ -37,6 +37,12 @@ Rimbra hosts the user's apps. You reach it through the `rimbra` MCP server. If i
 - `create_database`, then `connect_database` to the project (adds DATABASE_URL), then `deploy_project`.
 - `backup_database` before risky changes. `restore_backup` replaces the data (a safety backup is taken first); always confirm.
 
+## Cron jobs
+
+- `create_cron_job` with a 5-field schedule (`*/15 * * * *`, `0 2 * * *`, `@daily`) and a timezone. `mode: http` calls a path on the live site; `mode: command` runs a shell command (e.g. `npm run cleanup`) in the latest build with the project's variables.
+- For http jobs, `save_cron_secret` stores RIMBRA_CRON_SECRET on the project; the route should reject requests whose `X-Rimbra-Cron-Secret` header doesn't match. Redeploy after.
+- Check a new job with `run_cron_job`, then `get_cron_runs` a few seconds later for the status and output. `list_cron_jobs` shows the plan's limits (how many jobs, how often, how long a run).
+
 ## Email and WhatsApp
 
 - Email: `add_email_domain` with a from address, give the user the DNS records, wait until `list_email_domains` shows it verified, then `send_email`.
@@ -44,6 +50,6 @@ Rimbra hosts the user's apps. You reach it through the `rimbra` MCP server. If i
 
 ## Care
 
-- Confirm with the user before `rollback_project`, `set_env_var` on Production, `create_project`, `create_database`, `restore_backup`, `send_email`, `send_whatsapp`, `contact_support`, or any `query_database` statement that changes data.
+- Confirm with the user before `rollback_project`, `set_env_var` on Production, `create_project`, `create_database`, `restore_backup`, `send_email`, `send_whatsapp`, `delete_cron_job`, `contact_support`, or any `query_database` statement that changes data.
 - Never print secret values back to the user. Variable values aren't returned by the tools anyway.
 - Keep `query_database` reads small: add `LIMIT`.
