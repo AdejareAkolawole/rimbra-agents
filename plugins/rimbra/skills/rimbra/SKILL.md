@@ -47,9 +47,10 @@ Rimbra hosts the user's apps. You reach it through the `rimbra` MCP server. If i
 
 - Email: `add_email_domain` with a from address, give the user the DNS records, wait until `list_email_domains` shows it verified, then `send_email`.
 - WhatsApp: numbers are connected in the dashboard; `send_whatsapp` sends from one.
+- API keys for the user's own apps: `create_email_api_key` (send_only by default) and `get_whatsapp_api_key`. The best place for a key is straight into the project with `set_env_var` (RIMBRA_EMAILS_KEY, RIMBRA_WHATSAPP_KEY), then redeploy.
 
 ## Care
 
-- Confirm with the user before `rollback_project`, `set_env_var` on Production, `create_project`, `create_database`, `restore_backup`, `send_email`, `send_whatsapp`, `delete_cron_job`, `contact_support`, or any `query_database` statement that changes data.
+- Confirm with the user before `rollback_project`, `set_env_var` on Production, `create_project`, `create_database`, `restore_backup`, `send_email`, `send_whatsapp`, `delete_email_api_key`, `rotate_whatsapp_api_key`, `delete_cron_job`, `contact_support`, or any `query_database` statement that changes data.
 - Never print secret values back to the user. Variable values aren't returned by the tools anyway.
 - Keep `query_database` reads small: add `LIMIT`.
