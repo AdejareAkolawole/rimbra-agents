@@ -24,6 +24,16 @@ Rimbra hosts the user's apps. You reach it through the `rimbra` MCP server. If i
 3. Poll `get_deployment` every 20–30 seconds until the status is `ready` or `failed`. Builds take one to three minutes.
 4. When it's ready, give the user the address.
 
+## Local code without a repository
+
+If the code is only on the user's machine and you can run shell commands, use the Rimbra CLI instead of the MCP tools:
+
+1. Install it once: `curl -fsSL https://rimbra.app/install.sh | sh` (macOS and Linux).
+2. `rimbra login` opens the user's browser to approve it. Ask them to choose Allow.
+3. `rimbra deploy --yes` in the app's folder. It uploads the folder (skipping node_modules, .git and .env files), follows the build and prints the live address. Running it again ships a new version of the same application.
+
+`rimbra env set KEY value`, `rimbra logs` and `rimbra domains add example.com` work in the same folder. Never paste secrets from .env files into commands without asking. Guide: https://rimbra.app/docs/cli
+
 ## When a deploy fails
 
 1. Read the last lines of `get_deployment`. They usually name the problem.
